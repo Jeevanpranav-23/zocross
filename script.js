@@ -14,15 +14,11 @@ let playerOScore = 0;
 let playerXScore = 0;
 
 const winPatterns = [
-  [0, 1, 2],
-  [0, 3, 6],
-  [0, 4, 8],
-  [1, 4, 7],
-  [2, 5, 8],
-  [2, 4, 6],
-  [3, 4, 5],
-  [6, 7, 8],
+  [0, 1, 2], [0, 3, 6], [0, 4, 8],
+  [1, 4, 7], [2, 5, 8], [2, 4, 6],
+  [3, 4, 5], [6, 7, 8]
 ];
+
 
 const resetGame = () => {
   turnO = true;
@@ -31,6 +27,15 @@ const resetGame = () => {
   msgContainer.classList.add("hide");
 };
 
+
+const newGame = () => {
+  playerOScore = 0;
+  playerXScore = 0;
+  updateScoreboard();
+  resetGame();
+};
+
+
 boxes.forEach((box) => {
   box.addEventListener("click", () => {
     if (box.innerText === "") { 
@@ -38,9 +43,7 @@ boxes.forEach((box) => {
       box.disabled = true; 
       count++; 
 
-      let isWinner = checkWinner(); 
-
-      if (!isWinner) {
+      if (!checkWinner()) {
         if (count === 9) {
           gameDraw(); 
         } else {
@@ -51,15 +54,18 @@ boxes.forEach((box) => {
   });
 });
 
+
 const gameDraw = () => {
-  msg.innerText = `Game was a Draw.`;
+  msg.innerText = "Game was a Draw.";
   msgContainer.classList.remove("hide");
   disableBoxes();
 };
 
+
 const disableBoxes = () => {
   boxes.forEach(box => box.disabled = true); 
 };
+
 
 const enableBoxes = () => {
   boxes.forEach(box => {
@@ -67,6 +73,7 @@ const enableBoxes = () => {
     box.innerText = ""; 
   });
 };
+
 
 const checkWinner = () => {
   for (let pattern of winPatterns) {
@@ -79,29 +86,29 @@ const checkWinner = () => {
   return false; 
 };
 
+
 const showWinner = (winner) => {
-  const playerOName = playerOInput.value || "Player O"; 
-  const playerXName = playerXInput.value || "Player X"; 
-
-  if (winner === "O") {
-    msg.innerHTML = `🏆 Congratulations, Winner is <strong>${playerOName}</strong>! 🏆`; 
-    playerOScore++; 
-    score1Display.innerText = `Player O: ${playerOScore}`; 
-  } else {
-    msg.innerHTML = `🏆 Congratulations, Winner is <strong>${playerXName}</strong>! 🏆`; 
-    playerXScore++; 
-    score2Display.innerText = `Player X: ${playerXScore}`; 
-  }
-
+  let name = winner === "O" ? playerOInput.value || "Player O" : playerXInput.value || "Player X";
+  
+  msg.innerHTML = ` 🏆Congratulations,Winner<strong>${name}</strong>!🏆`; 
   msgContainer.classList.remove("hide"); 
   disableBoxes(); 
+
+  if (winner === "O") {
+    playerOScore++;
+  } else {
+    playerXScore++;
+  }
+
+  updateScoreboard();
 };
 
+
+const updateScoreboard = () => {
+  score1Display.innerText = `Player O: ${playerOScore}`;
+  score2Display.innerText = `Player X: ${playerXScore}`;
+};
+
+
 resetBtn.addEventListener("click", resetGame);
-newGameBtn.addEventListener("click", () => {
-  playerOScore = 0; 
-  playerXScore = 0; 
-  score1Display.innerText = `Player O: ${playerOScore}`; 
-  score2Display.innerText = `Player X: ${playerXScore}`; 
-  resetGame(); 
-});
+newGameBtn.addEventListener("click", newGame);
