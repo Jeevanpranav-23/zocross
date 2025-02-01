@@ -98,10 +98,9 @@ h1 {
   color: white;
 }
 
-
 .msg-container {
   position: absolute;
-  top: 10%; 
+  top: 20%; 
   left: 50%;
   transform: translate(-50%, -50%);
   background: rgba(0, 0, 0, 0.8);
@@ -129,6 +128,7 @@ h1 {
   align-items: center;
   justify-content: center;
   gap: 10px;
+  flex-direction: row;
 }
 
 #playerO, #playerX {
@@ -146,3 +146,13 @@ h1 {
   align-self: center;
 }
 
+
+.msg-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  gap: 15px;
+  flex-wrap: wrap;
+}
