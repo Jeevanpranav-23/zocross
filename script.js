@@ -19,14 +19,12 @@ const winPatterns = [
   [3, 4, 5], [6, 7, 8]
 ];
 
-
 const resetGame = () => {
   turnO = true;
   count = 0;
   enableBoxes();
   msgContainer.classList.add("hide");
 };
-
 
 const newGame = () => {
   playerOScore = 0;
@@ -35,11 +33,17 @@ const newGame = () => {
   resetGame();
 };
 
-
 boxes.forEach((box) => {
   box.addEventListener("click", () => {
     if (box.innerText === "") { 
-      box.innerText = turnO ? "O" : "X"; 
+      if (turnO) {
+        box.innerText = "O";  
+        box.classList.add("o");  
+      } else {
+        box.innerText = "X";
+        box.classList.add("x"); 
+      }
+
       box.disabled = true; 
       count++; 
 
@@ -54,26 +58,23 @@ boxes.forEach((box) => {
   });
 });
 
-
 const gameDraw = () => {
   msg.innerText = "Game was a Draw.";
   msgContainer.classList.remove("hide");
   disableBoxes();
 };
 
-
 const disableBoxes = () => {
   boxes.forEach(box => box.disabled = true); 
 };
-
 
 const enableBoxes = () => {
   boxes.forEach(box => {
     box.disabled = false; 
     box.innerText = ""; 
+    box.classList.remove("x", "o"); 
   });
 };
-
 
 const checkWinner = () => {
   for (let pattern of winPatterns) {
@@ -86,11 +87,10 @@ const checkWinner = () => {
   return false; 
 };
 
-
 const showWinner = (winner) => {
   let name = winner === "O" ? playerOInput.value || "Player O" : playerXInput.value || "Player X";
   
-  msg.innerHTML = ` 🏆Congratulations,Winner<strong>${name}</strong>!🏆`; 
+  msg.innerHTML = `🏆 Congratulations, <strong>${name}</strong> wins! 🏆`; 
   msgContainer.classList.remove("hide"); 
   disableBoxes(); 
 
@@ -103,12 +103,10 @@ const showWinner = (winner) => {
   updateScoreboard();
 };
 
-
 const updateScoreboard = () => {
   score1Display.innerText = `Player O: ${playerOScore}`;
   score2Display.innerText = `Player X: ${playerXScore}`;
 };
-
 
 resetBtn.addEventListener("click", resetGame);
 newGameBtn.addEventListener("click", newGame);
