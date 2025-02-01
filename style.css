@@ -71,11 +71,25 @@ h1 {
   border-radius: 15px;
   border: none;
   font-size: 3rem;
-  color: red;
-  background-color: white;
   font-weight: bold;
   cursor: pointer;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
 }
+
+
+.box.x{
+  color:red;
+}
+
+.box.o {
+  color:rgb(7, 31, 241); 
+}
+
+
 
 .box:disabled {
   background-color: #e9ecef;
