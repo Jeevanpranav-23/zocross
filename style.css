@@ -98,9 +98,10 @@ h1 {
   color: white;
 }
 
+
 .msg-container {
-  position: absolute;
-  top: 20%; 
+  position: fixed;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: rgba(0, 0, 0, 0.8);
@@ -155,4 +156,6 @@ h1 {
   padding: 15px;
   gap: 15px;
   flex-wrap: wrap;
+  width: 90%;
+  max-width: 400px;
 }
