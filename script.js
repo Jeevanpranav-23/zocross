@@ -3,15 +3,15 @@ let resetBtn = document.querySelector("#reset-btn");
 let newGameBtn = document.querySelector("#new-btn");
 let msgContainer = document.querySelector(".msg-container");
 let msg = document.querySelector("#msg");
-let player1Input = document.querySelector("#player1");
-let player2Input = document.querySelector("#player2");
+let playerOInput = document.querySelector("#playerO");
+let playerXInput = document.querySelector("#playerX");
 let score1Display = document.querySelector("#score1");
 let score2Display = document.querySelector("#score2");
 
 let turnO = true; 
 let count = 0; 
-let player1Score = 0;
-let player2Score = 0;
+let playerOScore = 0;
+let playerXScore = 0;
 
 const winPatterns = [
   [0, 1, 2],
@@ -33,20 +33,20 @@ const resetGame = () => {
 
 boxes.forEach((box) => {
   box.addEventListener("click", () => {
-    if (turnO) {
-      box.innerText = "O"; 
-      turnO = false; 
-    } else {
-      box.innerText = "X"; 
-      turnO = true; 
-    }
-    box.disabled = true; 
-    count++; 
+    if (box.innerText === "") { 
+      box.innerText = turnO ? "O" : "X"; 
+      box.disabled = true; 
+      count++; 
 
-    let isWinner = checkWinner(); 
+      let isWinner = checkWinner(); 
 
-    if (count === 9 && !isWinner) {
-      gameDraw(); 
+      if (!isWinner) {
+        if (count === 9) {
+          gameDraw(); 
+        } else {
+          turnO = !turnO; 
+        }
+      }
     }
   });
 });
@@ -58,16 +58,14 @@ const gameDraw = () => {
 };
 
 const disableBoxes = () => {
-  for (let box of boxes) {
-    box.disabled = true; 
-  }
+  boxes.forEach(box => box.disabled = true); 
 };
 
 const enableBoxes = () => {
-  for (let box of boxes) {
+  boxes.forEach(box => {
     box.disabled = false; 
     box.innerText = ""; 
-  }
+  });
 };
 
 const checkWinner = () => {
@@ -82,17 +80,17 @@ const checkWinner = () => {
 };
 
 const showWinner = (winner) => {
-  const player1Name = player1Input.value || "Player 1"; 
-  const player2Name = player2Input.value || "Player 2"; 
+  const playerOName = playerOInput.value || "Player O"; 
+  const playerXName = playerXInput.value || "Player X"; 
 
   if (winner === "O") {
-    msg.innerHTML = `🏆 Congratulations, Winner is <strong>${player1Name}</strong>! 🏆`; 
-    player1Score++; 
-    score1Display.innerText = `Player 1: ${player1Score}`; 
+    msg.innerHTML = `🏆 Congratulations, Winner is <strong>${playerOName}</strong>! 🏆`; 
+    playerOScore++; 
+    score1Display.innerText = `Player O: ${playerOScore}`; 
   } else {
-    msg.innerHTML = `🏆 Congratulations, Winner is <strong>${player2Name}</strong>! 🏆`; 
-    player2Score++; 
-    score2Display.innerText = `Player 2: ${player2Score}`; 
+    msg.innerHTML = `🏆 Congratulations, Winner is <strong>${playerXName}</strong>! 🏆`; 
+    playerXScore++; 
+    score2Display.innerText = `Player X: ${playerXScore}`; 
   }
 
   msgContainer.classList.remove("hide"); 
@@ -101,9 +99,9 @@ const showWinner = (winner) => {
 
 resetBtn.addEventListener("click", resetGame);
 newGameBtn.addEventListener("click", () => {
-  player1Score = 0; 
-  player2Score = 0; 
-  score1Display.innerText = `Player 1: ${player1Score}`; 
-  score2Display.innerText = `Player 2: ${player2Score}`; 
+  playerOScore = 0; 
+  playerXScore = 0; 
+  score1Display.innerText = `Player O: ${playerOScore}`; 
+  score2Display.innerText = `Player X: ${playerXScore}`; 
   resetGame(); 
 });
