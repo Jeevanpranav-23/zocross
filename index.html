@@ -15,14 +15,29 @@
     <h1>zocross</h1>
     
     <div class="name-inputs">
-      <input type="text" id="playerO" placeholder="Player O Name" />
-      <input type="text" id="playerX" placeholder="Player X Name" />
+      <input type="text" id="playerO" placeholder="Player O Name" class="player-name-input"/>
+      <input type="text" id="playerX" placeholder="Player X Name" class="player-name-input"/>
     </div>
     
     <div class="scoreboard">
       <p id="score1">Player O: 0</p>
       <p id="score2">Player X: 0</p>
     </div>
+    
+    <table class="high-score-table">
+      <tr>
+        <th>🏆 Player</th>
+        <th>Highest Score</th>
+      </tr>
+      <tr>
+        <td id="high-scoreO-name">No Player Yet</td>
+        <td id="high-scoreO">0</td>
+      </tr>
+      <tr>
+        <td id="high-scoreX-name">No Player Yet</td>
+        <td id="high-scoreX">0</td>
+      </tr>
+    </table>
     
     <div class="container">
       <div class="game">
@@ -37,9 +52,11 @@
         <button class="box"></button>
       </div>
     </div>
-
+   
     <button id="reset-btn">Reset Game</button>
-    
-    <script src="script.js"></script>
+    <button id="reset-high-score">Reset High Score</button>
+    <script src = "script.js"></script>
   </body>
 </html>
+
+    
