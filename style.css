@@ -14,37 +14,54 @@ body {
 h1 {
   font-size: 3rem;
   font-weight: bold;
-  margin-top: 60px;
+  margin-top: 20px;
   text-transform: uppercase;
 }
 
 .name-inputs {
-  margin: 30px 0;
+  margin: 20px 0;
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 15px;
 }
 
 .player-name-input {
-  width: 220px;
+  width: 200px;
   padding: 10px;
   border: 3px solid black;
-  border-radius: 15px;
-  font-size: 1.2rem;
-  color: black;
-  background-color: white;
+  border-radius: 10px;
+  font-size: 1rem;
   text-align: center;
   font-weight: bold;
 }
 
 .scoreboard {
-  margin: 20px 0;
-  font-size: 1.5rem;
+  margin: 10px 0;
+  font-size: 1.3rem;
   font-weight: bold;
   background-color: white;
   padding: 10px;
   display: inline-block;
   border-radius: 10px;
+}
+
+.high-score-table {
+  margin: 20px auto;
+  border-collapse: collapse;
+  width: 300px;
+  font-size: 1.2rem;
+}
+
+.high-score-table th {
+  background-color: black;
+  color: white;
+  padding: 8px;
+}
+
+.high-score-table th, 
+.high-score-table td {
+  border: 2px solid black;
+  padding: 8px;
 }
 
 .container {
@@ -58,17 +75,16 @@ h1 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 5px;
-  width: 330px; 
-  height: 330px; 
-  background-color: black;
+  width: 320px;
+  height: 320px;
   padding: 10px;
-  border-radius: 15px;
+  border-radius: 10px;
 }
 
 .box {
   width: 100px;
   height: 100px;
-  border-radius: 15px;
+  border-radius: 10px;
   border: none;
   font-size: 3rem;
   font-weight: bold;
@@ -80,22 +96,18 @@ h1 {
   background-color: white;
 }
 
-
-.box.x{
-  color:red;
+.box.x {
+  color: red;
 }
 
 .box.o {
-  color:rgb(7, 31, 241); 
+  color: blue;
 }
-
-
 
 .box:disabled {
-  background-color: #e9ecef;
+  background-color: #ddd;
 }
-
-#reset-btn, #new-btn {
+#new-btn {
   padding: 10px 20px;
   font-size: 1.2rem;
   background-color: black;
@@ -107,55 +119,40 @@ h1 {
   margin-top: 20px;
 }
 
-#reset-btn:hover, #new-btn:hover {
+ #new-btn:hover {
+  background-color: darkgoldenrod;
+  color: white;
+}
+#reset-btn, #reset-high-score {
+  padding: 10px 15px;
+  font-size: 1rem;
+  background-color: black;
+  color: gold;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+#reset-btn:hover, #reset-high-score:hover {
   background-color: darkgoldenrod;
   color: white;
 }
 
-
 .msg-container {
   position: fixed;
-  top: 10%;
+  top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: rgba(0, 0, 0, 0.8);
   color: white;
-  padding: 20px;
+  padding: 15px;
   border-radius: 10px;
-  text-align: center;
-  font-size: 2rem;
-  font-weight: bold;
+  font-size: 1.5rem;
   box-shadow: 0px 0px 10px white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
 }
 
 .hide {
   display: none;
 }
-
-#msg {
-  font-size: 5vmin;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-
-#playerO, #playerX {
-  width: 220px;
-  padding: 10px;
-  border: 3px solid black;
-  border-radius: 15px;
-  font-size: 1.2rem;
-  color: black;
-  background-color: white;
-  text-align: center;
-  font-weight: bold;
-  transition: 0.3s;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-  align-self: center;
-}
+ 
