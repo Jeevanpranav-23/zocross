@@ -5,7 +5,7 @@
 }
 
 body {
-  background-color: gold;
+  background-color:floralwhite;
   text-align: center;
   font-family: Arial, sans-serif;
   color: black;
@@ -111,23 +111,23 @@ h1 {
   padding: 10px 20px;
   font-size: 1.2rem;
   background-color: black;
-  color: gold;
+  color: white;
   border-radius: 10px;
-  border: 3px solid gold;
+  border: 3px solid #ddd;
   cursor: pointer;
   font-weight: bold;
   margin-top: 20px;
 }
 
  #new-btn:hover {
-  background-color: darkgoldenrod;
+  background-color: grey;
   color: white;
 }
 #reset-btn, #reset-high-score {
   padding: 10px 15px;
   font-size: 1rem;
   background-color: black;
-  color: gold;
+  color: white;
   border-radius: 8px;
   cursor: pointer;
   font-weight: bold;
@@ -135,7 +135,7 @@ h1 {
 }
 
 #reset-btn:hover, #reset-high-score:hover {
-  background-color: darkgoldenrod;
+  background-color: grey;
   color: white;
 }
 
