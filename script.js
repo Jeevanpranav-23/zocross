@@ -27,6 +27,7 @@ const winPatterns = [
 ];
 
 
+
 boxes.forEach((box, index) => {
   box.addEventListener("click", () => handleClick(box, index));
 });
@@ -128,3 +129,8 @@ newGameBtn.addEventListener("click", () => {
   resetGame();
 });
 resetHighScoreBtn.addEventListener("click", resetHighScore);
+if ('serviceWorker' in navigator) {
+
+navigator.serviceWorker.register('./service-worker.js') .then(() => 
+console.log('Service Worker Registered'));
+ }
